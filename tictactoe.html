@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS File -->
+        <link rel="stylesheet" href="#">
+        <style>
+            *{
+                margin:0px;
+                
+            }
+            /* Game Body CSS*/
+            #game{
+                
+                margin: 20px;
+                margin-left: 25px;
+                /* margin-left:25px; width: 350px; for mobile edition web browser*/
+                width:350px;
+                height:500px;
+                align:center;
+                background-color:azure;
+                text-align: center;
+
+
+            }
+            
+            /* Game Name*/
+            h1{
+                color:chartreuse;
+                font-size: 50px;
+            }
+            #ins{
+
+                font-size: 20px;
+                font-family: 'Courier New', Courier, monospace;
+                
+            }
+            #b1, #b2, #b3, #b4, #b5, #b6, #b7, #b8, #b9{
+                height:50px;
+                width:50px;
+                margin: auto;
+                border: 2px solid aqua;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 30px;
+                text-align: center;
+                
+            }
+            #btn1{
+                box-sizing: border-box;
+                height:35px;
+                width:90px;
+                margin: auto;
+                border: 2px solid goldenrod;
+                font-size: 20px;
+                text-align: center;
+                cursor: pointer;
+
+            }
+
+            #turn{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: medium;
+                color:greenyellow;
+                
+            }
+
+
+
+
+        </style>
+    </head>
+    <body>
+        <div id="game">
+            <h1  id="Header">Tic Tac Toe</h1>
+            <p id="ins">Instructions to play: <br> <hr>
+                Game starts by just Tap on box<br>
+                <br>First Player starts as <b>Player 1</b>
+                <br>And<br>
+                Second Player as <b>Player 0</b>
+            </p>
+                <hr><br><br><hr>
+        <!-- 3 X 3 Matrix input Box-->
+        
+            <input type="text" id="b1" onclick="f1(); f();" readonly>
+            <input type="text" id="b2" onclick="f2(); f();" readonly>
+            <input type="text" id="b3" onclick="f3(); f();" readonly>
+            <br><br>
+            <input type="text" id="b4" onclick="f4(); f();" readonly>
+            <input type="text" id="b5" onclick="f5(); f();" readonly>
+            <input type="text" id="b6" onclick="f6(); f();" readonly>
+            <br><br>
+            <input type="text" id="b7" onclick="f7(); f();" readonly>
+            <input type="text" id="b8" onclick="f8(); f();" readonly>
+            <input type="text" id="b9" onclick="f9(); f();" readonly>
+
+            <br><br><br>
+            <!-- Reset Button-->
+            <button id="btn1" onclick="location.reload();">Reset</button>
+
+            <br><br><hr>
+            <!-- Player Turn -->
+            <p id="turn"></p>
+
+            <hr>
+            <p><marquee>This Game is designed and developed by Mr. Amit Kumar &copy; 2022</marquee></p>
+
+        </div>
+        <script>
+            //document.getElementById("game").style.width= window.innerWidth;
+
+            var turn = 1;
+            var b1,b2,b3,b4,b5,b6,b7,b8,b9='';
+            function f(){
+                b1= document.getElementById("b1").value;
+                b2= document.getElementById("b2").value;
+                b3= document.getElementById("b3").value;
+                b4= document.getElementById("b4").value;
+                b5= document.getElementById("b5").value;
+                b6= document.getElementById("b6").value;
+                b7= document.getElementById("b7").value;
+                b8= document.getElementById("b8").value;
+                b9= document.getElementById("b9").value;
+                //alert("HI");
+
+                /*check winning situation:-
+                Total There will be Eight cases for winning of player 1, i.e. who selected 1 as input:
+                i.e.:H:  b1b2b3, b4b5b6, b7b8b9 v: b1b4b7, b2b5b8, b3b6b9 D: b1b5b9 b3b5b7
+                */
+
+
+                if(b1 == 1  && b2 == 1 && b3 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b4 == 1  && b5 == 1 && b6 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b7 == 1  && b8 == 1 && b9 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b1 == 1  && b4 == 1 && b7 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b2 == 1  && b5 == 1 && b8 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b3 == 1  && b6 == 1 && b9 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b1 == 1  && b5 == 1 && b9 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b3 == 1  && b5 == 1 && b7 == 1){
+                    document.getElementById("turn").innerHTML= "Player-1 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }
+
+                //Same as above for other player who opted 0 i.e: Player-0;
+
+                else if(b1 == '0'  && b2 == '0' && b3 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b4 == '0'  && b5 == '0' && b6 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b7 == '0'  && b8 == '0' && b9 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b1 == '0'  && b4 == '0' && b7 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b2 == '0'  && b5 == '0' && b8 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b3 == '0'  && b6 == '0' && b9 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b5").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b1 == '0'  && b5 == '0' && b9 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b3").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b7").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if(b3 == '0'  && b5 == '0' && b7 == '0'){
+                    document.getElementById("turn").innerHTML= "Player-0 won";
+                    document.getElementById("b1").disabled =true;
+                    document.getElementById("b2").disabled =true;
+                    document.getElementById("b4").disabled =true;
+                    document.getElementById("b6").disabled =true;
+                    document.getElementById("b8").disabled =true;
+                    document.getElementById("b9").disabled =true;
+                    //window.alert("Player-1 won the match"); 
+                }else if((b1 == 1 || b1 == '0') && (b2 == 1 || b2 == '0') && (b3 == 1 || b3 == '0') 
+                    && (b4 == 1 || b4 == '0') && (b5 == 1 || b5 == '0') && (b6 == 1 || b6 == '0') 
+                    && (b7 == 1 || b7 == '0') && (b8 == 1 || b8 == '0') && (b9 == 1 || b9 == '0') ){
+                        document.getElementById("turn").innerHTML= "Match Tie";
+                        document.getElementById("turn").style.color ="Red";
+                    }else{
+                    if(turn == 1){
+                        document.getElementById("turn").innerHTML="Player-1 Turn";
+                        document.getElementById("turn").style.color ="Blue";
+                        
+                        
+                    }else{
+                        document.getElementById("turn").innerHTML="Player-0 Turn";
+                        document.getElementById("turn").style.color ="blueviolet";
+                        
+                    }
+                }
+
+
+
+            }
+
+            /* Take input from User */
+
+            function f1(){
+                if(turn == 1){
+                document.getElementById("b1").value = "1";
+                document.getElementById("b1").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b1").value = "0";
+                document.getElementById("b1").disabled =true;
+                turn = 1;
+                }
+
+            }
+            
+            function f2(){
+                if(turn == 1){
+                document.getElementById("b2").value = "1";
+                document.getElementById("b2").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b2").value = "0";
+                document.getElementById("b2").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f3(){
+                if(turn == 1){
+                document.getElementById("b3").value = "1";
+                document.getElementById("b3").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b3").value = "0";
+                document.getElementById("b3").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f4(){
+                if(turn == 1){
+                document.getElementById("b4").value = "1";
+                document.getElementById("b4").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b4").value = "0";
+                document.getElementById("b4").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f5(){
+                if(turn == 1){
+                document.getElementById("b5").value = "1";
+                document.getElementById("b5").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b5").value = "0";
+                document.getElementById("b5").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f6(){
+                if(turn == 1){
+                document.getElementById("b6").value = "1";
+                document.getElementById("b6").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b6").value = "0";
+                document.getElementById("b6").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f7(){
+                if(turn == 1){
+                document.getElementById("b7").value = "1";
+                document.getElementById("b7").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b7").value = "0";
+                document.getElementById("b7").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f8(){
+                if(turn == 1){
+                document.getElementById("b8").value = "1";
+                document.getElementById("b8").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b8").value = "0";
+                document.getElementById("b8").disabled =true;
+                turn = 1;
+                }
+
+            }
+
+            
+            function f9(){
+                if(turn == 1){
+                document.getElementById("b9").value = "1";
+                document.getElementById("b9").disabled =true;
+                turn = 0; 
+                }else{
+                document.getElementById("b9").value = "0";
+                document.getElementById("b9").disabled =true;
+                turn = 1;
+                }
+
+            }
+        </script>
+
+
+
+    </body>
+</html>
